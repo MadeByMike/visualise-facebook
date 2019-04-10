@@ -57,43 +57,43 @@ class ChartMessages extends Component {
     chart.options.title = {
       display: true,
       fontSize: 32,
-      fontColor: 'white',
+      fontColor: "white",
       padding: 20,
       text: `Messages by ${this.state.format}${
         this.state.cumulative ? " (cumulative)" : ""
-        }`
+      }`
     };
 
     chart.data.datasets = this.state.cumulative
       ? [
-        {
-          label: `Messages`,
-          data: data
-            .map(d => d.value)
-            // Create cumulative sum
-            .reduce((a, x, i) => [...a, x + (a[i - 1] || 0)], []),
-          type: "line",
-          borderWidth: 3,
-          borderColor: Chart.helpers.color(chartColors.orange).rgbString(),
-          backgroundColor: Chart.helpers
-            .color(chartColors.orange)
-            .alpha(0.75)
-            .rgbString()
-        }
-      ]
+          {
+            label: `Messages`,
+            data: data
+              .map(d => d.value)
+              // Create cumulative sum
+              .reduce((a, x, i) => [...a, x + (a[i - 1] || 0)], []),
+            type: "line",
+            borderWidth: 3,
+            borderColor: Chart.helpers.color(chartColors.orange).rgbString(),
+            backgroundColor: Chart.helpers
+              .color(chartColors.orange)
+              .alpha(0.75)
+              .rgbString()
+          }
+        ]
       : [
-        {
-          label: `Messages`,
-          data: data.map(d => d.value),
-          type: data.length > 1000 ? "line" : "bar",
-          borderWidth: 3,
-          borderColor: Chart.helpers.color(chartColors.orange).rgbString(),
-          backgroundColor: Chart.helpers
-            .color(chartColors.orange)
-            .alpha(0.5)
-            .rgbString()
-        }
-      ];
+          {
+            label: `Messages`,
+            data: data.map(d => d.value),
+            type: data.length > 1000 ? "line" : "bar",
+            borderWidth: 3,
+            borderColor: Chart.helpers.color(chartColors.orange).rgbString(),
+            backgroundColor: Chart.helpers
+              .color(chartColors.orange)
+              .alpha(0.5)
+              .rgbString()
+          }
+        ];
 
     return (
       <div className="py-5">

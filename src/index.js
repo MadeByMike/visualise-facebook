@@ -11,6 +11,7 @@ import ChartReactions from "./components/chart-reactions";
 
 import Chart from "chart.js";
 Chart.defaults.global.defaultFontColor = "#AAA";
+// Chart.defaults.global.title = { display: true };  // Title kills everything :(
 
 class App extends Component {
   render() {
