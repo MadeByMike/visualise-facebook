@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
+import LandingText from "./components/landing-text";
 import DropZone from "./components/dropzone";
 import { Provider } from "unistore/react";
 import { store } from "./functions/store";
@@ -18,6 +19,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="container">
+          <LandingText />
           <div className="row justify-content-center">
             <div className="col-12 col-md-10">
               <DropZone>
