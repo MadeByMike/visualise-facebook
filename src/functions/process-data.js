@@ -84,11 +84,10 @@ export const processReactionData = (data, f) => {
   const parseTime = t => parse(t, "t", new Date());
   const formatTime = t => format(t, labelFormat);
 
-  const reactions = _.groupBy(data, d => {
-    if (d.data) {
-      return d.data[0].reaction.reaction;
-    }
-    return d;
+  const filtered = data.filter(d => d.data);
+
+  const reactions = _.groupBy(filtered, d => {
+    return d.data[0].reaction.reaction;
   });
 
   const datasets = _.map(reactions, (reaction, label) => {
