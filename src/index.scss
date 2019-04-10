@@ -1,14 +1,22 @@
 @import "node_modules/bootstrap/scss/bootstrap.scss";
 
 body {
-  background:rbga(255, 255, 255,1);
+  background: rbga(255, 255, 255, 1);
   color: #000;
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin: 2rem 0 1rem 0;
 }
 
 .drop-zone {
   border: dashed 3px #555;
   position: relative;
-  height: calc(100vh - 40px);
+  height: calc(60vh - 40px);
+  min-height: 300px;
   margin: 20px 0;
   transition: all 1s ease;
 }
