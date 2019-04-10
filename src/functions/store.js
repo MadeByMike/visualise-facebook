@@ -12,11 +12,9 @@ const isJSON = name =>
 
 const actions = store => ({
   dropData(state, zip) {
-    console.log("Dropped data");
-    return { zip: zip };
+    return { zip };
   },
   extractFriends(state) {
-    console.log("Processing friends");
     try {
       state.zip
         .file("friends/friends.json")
@@ -48,7 +46,6 @@ const actions = store => ({
     }
   },
   extractWords(state) {
-    console.log("Processing Words");
     const messages = [];
     try {
       state.zip.folder("messages/inbox").forEach((relativePath, file) => {
@@ -68,12 +65,17 @@ const actions = store => ({
   extractReactions(state) {
     console.log("Processing Reactions");
     const reactions = [];
-    state.zip
-      .file("likes_and_reactions/posts_and_comments.json")
-      .async("text")
-      .then(json => {
-        store.setState({ reactions: JSON.parse(json).reactions });
-      });
+
+    try {
+      state.zip
+        .file("likes_and_reactions/posts_and_comments.json")
+        .async("text")
+        .then(json => {
+          store.setState({ reactions: JSON.parse(json).reactions });
+        });
+    } catch (e) {
+      console.log(e);
+    }
   }
 });
 
