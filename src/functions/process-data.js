@@ -72,7 +72,6 @@ export const processWordData = (data, f) => {
 };
 
 export const processReactionData = (data, f) => {
-  console.log(data);
   const formatOptions = {
     day: "dd/MM/yyyy",
     month: "MM/yyyy",
@@ -92,8 +91,6 @@ export const processReactionData = (data, f) => {
     return d;
   });
 
-  console.log(reactions);
-
   const datasets = _.map(reactions, (reaction, label) => {
     const grouped = _.groupBy(reaction, d => {
       return formatTime(parseTime(d.timestamp));
@@ -106,8 +103,6 @@ export const processReactionData = (data, f) => {
 
     return { label, data: sorted };
   });
-
-  console.log(datasets);
 
   return datasets;
 };
