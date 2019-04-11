@@ -2,7 +2,7 @@ import createStore from "unistore";
 import _ from "lodash";
 
 const store = createStore({
-  zip: false,
+  zip: false
 });
 
 const isJSON = name =>
@@ -22,12 +22,11 @@ const actions = store => ({
           store.setState({ friends: JSON.parse(json) });
         });
     } catch (e) {
-      store.setState({friends :false})
+      store.setState({ friends: false });
       console.log(e);
     }
   },
   extractMessages(state) {
-
     console.log("Processing Messages");
     try {
       const messages = [];
@@ -40,10 +39,14 @@ const actions = store => ({
       });
 
       Promise.all(messages).then(results => {
-        store.setState({ messages: _.flatten(results) });
+        if (results.length) {
+          store.setState({ messages: _.flatten(results) });
+        } else {
+          store.setState({ messages: false });
+        }
       });
     } catch (e) {
-      store.setState({messages: false});
+      store.setState({ messages: false });
       console.log(e);
     }
   },
@@ -74,7 +77,7 @@ const actions = store => ({
           store.setState({ reactions: JSON.parse(json).reactions });
         });
     } catch (e) {
-      store.setState({reactions: false})
+      store.setState({ reactions: false });
       console.log(e);
     }
   }

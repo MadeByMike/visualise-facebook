@@ -7,8 +7,6 @@ import { connect } from "unistore/react";
 import Loader from "./loader";
 import { chartColors } from "../functions/colors";
 
-
-
 const canvas = document.createElement("canvas");
 canvas.classList.add("chart");
 const chart = new Chart(canvas, {
@@ -41,14 +39,16 @@ class ChartFriends extends Component {
     super();
     this.state = {
       cumulative: false,
-      format: "day"
+      format: "day",
+      loading: true
     };
   }
+
   componentDidUpdate() {
     if (!this.props.friends) {
       this.props.extractFriends();
     }
-    if (this.props.friends) {
+    if (this.props.friends && this.state.loading) {
       this.setState({
         loading: false
       });
@@ -61,6 +61,7 @@ class ChartFriends extends Component {
       return <Loader />;
     }
 
+    debugger;
     const data = processFriendsData(this.props.friends, this.state.format);
     chart.data.labels = data.map(d => d.label);
 
@@ -71,42 +72,42 @@ class ChartFriends extends Component {
       padding: 20,
       text: `Friends by ${this.state.format}${
         this.state.cumulative ? " (cumulative)" : ""
-        }`
+      }`
     };
 
     chart.data.datasets = this.state.cumulative
       ? [
-        {
-          label: `Friends`,
-          data: data
-            .map(d => d.value)
-            // Create cumulative sum
-            .reduce((a, x, i) => [...a, x + (a[i - 1] || 0)], []),
-          type: "line",
-          borderWidth: 3,
-          borderColor: Chart.helpers.color(chartColors.red).rgbString(),
-          backgroundColor: Chart.helpers
-            .color(chartColors.red)
-            .alpha(0.5)
-            .rgbString()
-        }
-      ]
+          {
+            label: `Friends`,
+            data: data
+              .map(d => d.value)
+              // Create cumulative sum
+              .reduce((a, x, i) => [...a, x + (a[i - 1] || 0)], []),
+            type: "line",
+            borderWidth: 3,
+            borderColor: Chart.helpers.color(chartColors.red).rgbString(),
+            backgroundColor: Chart.helpers
+              .color(chartColors.red)
+              .alpha(0.5)
+              .rgbString()
+          }
+        ]
       : [
-        {
-          label: `Friends`,
-          data: data.map(d => d.value),
-          type: data.length > 1000 ? "line" : "bar",
-          borderWidth: 3,
-          borderColor: Chart.helpers
-            .color(chartColors.red)
-            .lighten(0.025)
-            .rgbString(),
-          backgroundColor: Chart.helpers
-            .color(chartColors.red)
-            .alpha(0.5)
-            .rgbString()
-        }
-      ];
+          {
+            label: `Friends`,
+            data: data.map(d => d.value),
+            type: data.length > 1000 ? "line" : "bar",
+            borderWidth: 3,
+            borderColor: Chart.helpers
+              .color(chartColors.red)
+              .lighten(0.025)
+              .rgbString(),
+            backgroundColor: Chart.helpers
+              .color(chartColors.red)
+              .alpha(0.5)
+              .rgbString()
+          }
+        ];
 
     return (
       <div className="py-5">

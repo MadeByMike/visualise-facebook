@@ -49,7 +49,7 @@ class ChartMessages extends Component {
     if (!this.props.messages) {
       this.props.extractMessages();
     }
-    if (this.props.messages) {
+    if (this.props.messages && this.state.loading) {
       this.setState({
         loading: false
       });

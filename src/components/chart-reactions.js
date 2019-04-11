@@ -40,15 +40,26 @@ class ChartReactions extends Component {
     super();
     this.state = {
       cumulative: false,
-      format: "day"
+      format: "day",
+      loading:true
     };
     this.cumulativeRef = React.createRef();
+  }
+  
+  componentDidUpdate() {
+    if (!this.props.reactions) {
+      this.props.extractReactions();
+    }
+    if (this.props.reactions && this.state.loading) {
+      this.setState({
+        loading: false
+      });
+    }
   }
 
   render() {
     if (!this.props.zip || this.props.reactions === false) return null;
-    if (!this.props.reactions) {
-      this.props.extractReactions();
+    if (this.state.loading) {
       return <Loader />;
     }
 
