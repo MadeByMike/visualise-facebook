@@ -2,6 +2,7 @@ import JSZip from "jszip";
 import React, { Component } from "react";
 import { connect } from "unistore/react";
 import { actions } from "../functions/store";
+import DropMessage from "./drop-message";
 
 class DropZone extends Component {
   constructor() {
@@ -43,7 +44,9 @@ class DropZone extends Component {
         ref={this.dropzone}
         onDragOver={e => {
           e.preventDefault();
-          this.setState({ active: true });
+          if (!this.state.active) {
+            this.setState({ active: true });
+          }
         }}
         onDragLeave={e => {
           e.preventDefault();
@@ -52,9 +55,10 @@ class DropZone extends Component {
         onDrop={this.handleFiles}
       >
         <div className="drop-message">
-          {this.props.children}
+          <DropMessage />
           {this.renderInput()}
         </div>
+        {this.props.children}
       </div>
     );
   }

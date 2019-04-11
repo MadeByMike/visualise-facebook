@@ -19,7 +19,7 @@ const actions = store => ({
         .file("friends/friends.json")
         .async("text")
         .then(json => {
-          store.setState({ friends: JSON.parse(json) });
+          store.setState({ friends: JSON.parse(json).friends });
         });
     } catch (e) {
       store.setState({ friends: false });

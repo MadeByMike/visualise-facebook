@@ -15,7 +15,7 @@ export const processFriendsData = (data, f) => {
   const parseTime = t => parse(t, "t", new Date());
   const formatTime = t => format(t, labelFormat);
 
-  const grouped = _.groupBy(data.friends, d => {
+  const grouped = _.groupBy(data, d => {
     return formatTime(parseTime(d.timestamp));
   });
 

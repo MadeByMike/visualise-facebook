@@ -5,7 +5,6 @@ import LandingText from "./components/landing-text";
 import DropZone from "./components/dropzone";
 import { Provider } from "unistore/react";
 import { store } from "./functions/store";
-import DropMessage from "./components/drop-message";
 import ChartFriends from "./components/chart-friends";
 import ChartMessages from "./components/chart-messages";
 import ChartReactions from "./components/chart-reactions";
@@ -24,7 +23,6 @@ class App extends Component {
             <div className="row justify-content-center">
               <div className="col-12 col-md-10">
                 <DropZone>
-                  <DropMessage />
                   <ChartFriends />
                   <ChartMessages />
                   <ChartReactions />

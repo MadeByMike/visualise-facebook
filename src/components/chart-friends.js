@@ -61,7 +61,6 @@ class ChartFriends extends Component {
       return <Loader />;
     }
 
-    debugger;
     const data = processFriendsData(this.props.friends, this.state.format);
     chart.data.labels = data.map(d => d.label);
 
