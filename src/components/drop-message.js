@@ -4,11 +4,7 @@ import { connect } from "unistore/react";
 const DropMessage = props => {
   if (props.zip) return null;
 
-  return (
-    <div className="d-flex justify-content-center align-items-center drop-message">
-      <p>DROP FACEBOOK FILES HERE</p>
-    </div>
-  );
+  return <p>DROP FACEBOOK ZIP FILE HERE</p>;
 };
 
 const WrappedDropMessage = connect("zip")(DropMessage);

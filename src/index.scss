@@ -42,7 +42,7 @@ h1 {
 
 .drop-message {
   text-align: center;
-  display: none;
+  color: #000;
   position: absolute;
   pointer-events: none;
   top: 50%;
@@ -56,4 +56,9 @@ h1 {
 
 .drop-zone.is-active .drop-message {
   transform: translate(-50%, -50%) scale(1.2);
+}
+input.input-files {
+  width: 225px;
+  font-size: 1rem;
+  margin-top: 1rem;
 }

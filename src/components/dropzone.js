@@ -34,13 +34,6 @@ class DropZone extends Component {
     }
   }
 
-  renderInput() {
-    if (this.props.zip) return null;
-    return (
-      <input className="input-files" type="file" onChange={this.handleFiles} />
-    );
-  }
-
   render() {
     return (
       <div
@@ -58,9 +51,24 @@ class DropZone extends Component {
         }}
         onDrop={this.handleFiles}
       >
-        {this.renderInput()}
-        {this.props.children}
+        <div className="drop-message">
+          {this.props.children}
+          {this.renderInput()}
+        </div>
       </div>
+    );
+  }
+
+  renderInput() {
+    if (this.props.zip) return null;
+    return (
+      <p>
+        <input
+          className="input-files"
+          type="file"
+          onChange={this.handleFiles}
+        />
+      </p>
     );
   }
 }
