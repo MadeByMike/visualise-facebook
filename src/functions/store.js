@@ -13,6 +13,7 @@ const actions = store => ({
     return { zip };
   },
   extractFriends(state) {
+    console.log("Processing Friends");
     try {
       state.zip
         .file("friends/friends.json")
@@ -65,7 +66,6 @@ const actions = store => ({
   },
   extractReactions(state) {
     console.log("Processing Reactions");
-
     try {
       state.zip
         .file("likes_and_reactions/posts_and_comments.json")
