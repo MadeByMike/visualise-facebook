@@ -20,18 +20,19 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="container">
-          <LandingText />
-          <div className="row justify-content-center">
-            <div className="col-12 col-md-10">
-              <DropZone>
-                <DropMessage />
-                <ChartFriends />
-                <ChartMessages />
-                <ChartReactions />
-                <NoData />
-              </DropZone>
+          <LandingText>
+            <div className="row justify-content-center">
+              <div className="col-12 col-md-10">
+                <DropZone>
+                  <DropMessage />
+                  <ChartFriends />
+                  <ChartMessages />
+                  <ChartReactions />
+                  <NoData />
+                </DropZone>
+              </div>
             </div>
-          </div>
+          </LandingText>
         </div>
       </Provider>
     );
