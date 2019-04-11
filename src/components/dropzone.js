@@ -7,17 +7,20 @@ class DropZone extends Component {
   constructor() {
     super();
     this.state = { active: false };
-    this.handleDrop = this.handleDrop.bind(this);
+    this.handleFiles = this.handleFiles.bind(this);
+    this.renderInput = this.renderInput.bind(this);
   }
 
-  handleDrop(e) {
+  handleFiles(e) {
     e.preventDefault();
+    const files = e.target.files ? e.target.files : e.dataTransfer.files;
+
     this.setState({ active: false });
-    if (e.dataTransfer.files) {
-      if (e.dataTransfer.files.length > 1) {
+    if (files) {
+      if (files.length > 1) {
         alert("Too many files");
       } else {
-        const file = e.dataTransfer.files[0];
+        const file = files[0];
         var zip = new JSZip();
         zip.loadAsync(file).then(
           zip => {
@@ -29,6 +32,13 @@ class DropZone extends Component {
         );
       }
     }
+  }
+
+  renderInput() {
+    if (this.props.zip) return null;
+    return (
+      <input className="input-files" type="file" onChange={this.handleFiles} />
+    );
   }
 
   render() {
@@ -46,8 +56,9 @@ class DropZone extends Component {
           e.preventDefault();
           this.setState({ active: false });
         }}
-        onDrop={this.handleDrop}
+        onDrop={this.handleFiles}
       >
+        {this.renderInput()}
         {this.props.children}
       </div>
     );
