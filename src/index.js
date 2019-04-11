@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
+import LandingText from "./components/landing-text";
 import DropZone from "./components/dropzone";
 import { Provider } from "unistore/react";
 import { store } from "./functions/store";
@@ -11,14 +12,16 @@ import ChartReactions from "./components/chart-reactions";
 
 import Chart from "chart.js";
 Chart.defaults.global.defaultFontColor = "#AAA";
+// Chart.defaults.global.title = { display: true };  // Title kills everything :(
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <div className="container">
+          <LandingText />
           <div className="row justify-content-center">
-            <div className="col-10">
+            <div className="col-12 col-md-10">
               <DropZone>
                 <DropMessage />
                 <ChartFriends />

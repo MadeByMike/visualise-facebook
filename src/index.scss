@@ -28,8 +28,7 @@ h1 {
 
 .drop-zone.is-active {
   border-color: #005e9c;
-  height: calc(100vh - 40px);
-  background: radial-gradient(#555, transparent);
+  transform: scale(1.05);
 }
 
 .drop-message {
