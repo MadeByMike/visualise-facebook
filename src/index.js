@@ -9,6 +9,7 @@ import DropMessage from "./components/drop-message";
 import ChartFriends from "./components/chart-friends";
 import ChartMessages from "./components/chart-messages";
 import ChartReactions from "./components/chart-reactions";
+import NoData from "./components/no-data";
 
 import Chart from "chart.js";
 Chart.defaults.global.defaultFontColor = "#AAA";
@@ -27,6 +28,7 @@ class App extends Component {
                 <ChartFriends />
                 <ChartMessages />
                 <ChartReactions />
+                <NoData />
               </DropZone>
             </div>
           </div>
