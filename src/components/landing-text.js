@@ -2,7 +2,12 @@ import React from "react";
 import { connect } from "unistore/react";
 
 const LandingText = props => {
-  if (props.zip) return <h1>Visualise Your Facebook Data</h1>;
+  if (props.zip)
+    return (
+      <a class="main-title" href="/">
+        <h1>← Visualise Your Facebook Data</h1>
+      </a>
+    );
 
   return (
     <>
