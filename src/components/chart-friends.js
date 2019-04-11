@@ -44,11 +44,20 @@ class ChartFriends extends Component {
       format: "day"
     };
   }
-
-  render() {
-    if (!this.props.zip) return null;
+  componentDidUpdate() {
     if (!this.props.friends) {
       this.props.extractFriends();
+    }
+    if (this.props.friends) {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  render() {
+    if (!this.props.zip || this.props.friends === false) return null;
+    if (this.state.loading) {
       return <Loader />;
     }
 

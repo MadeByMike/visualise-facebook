@@ -46,7 +46,7 @@ class ChartReactions extends Component {
   }
 
   render() {
-    if (!this.props.zip) return null;
+    if (!this.props.zip || this.props.reactions === false) return null;
     if (!this.props.reactions) {
       this.props.extractReactions();
       return <Loader />;

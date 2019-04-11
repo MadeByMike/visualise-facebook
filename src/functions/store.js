@@ -3,8 +3,6 @@ import _ from "lodash";
 
 const store = createStore({
   zip: false,
-  friends: false,
-  messages: false
 });
 
 const isJSON = name =>
@@ -23,10 +21,12 @@ const actions = store => ({
           store.setState({ friends: JSON.parse(json) });
         });
     } catch (e) {
+      store.setState({friends :false})
       console.log(e);
     }
   },
   extractMessages(state) {
+
     console.log("Processing Messages");
     try {
       const messages = [];
@@ -42,6 +42,7 @@ const actions = store => ({
         store.setState({ messages: _.flatten(results) });
       });
     } catch (e) {
+      store.setState({messages: false});
       console.log(e);
     }
   },
@@ -64,7 +65,6 @@ const actions = store => ({
   },
   extractReactions(state) {
     console.log("Processing Reactions");
-    const reactions = [];
 
     try {
       state.zip
@@ -74,6 +74,7 @@ const actions = store => ({
           store.setState({ reactions: JSON.parse(json).reactions });
         });
     } catch (e) {
+      store.setState({reactions: false})
       console.log(e);
     }
   }
