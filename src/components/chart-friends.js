@@ -75,6 +75,8 @@ class ChartFriends extends Component {
       }`
     };
 
+    const xLength = data.length;
+
     chart.data.datasets = this.state.cumulative
       ? [
           {
@@ -96,7 +98,7 @@ class ChartFriends extends Component {
           {
             label: `Friends`,
             data: data.map(d => d.value),
-            type: data.length > 1000 ? "line" : "bar",
+            type: xLength > 50 ? "line" : "bar",
             borderWidth: 3,
             borderColor: Chart.helpers
               .color(chartColors.red)

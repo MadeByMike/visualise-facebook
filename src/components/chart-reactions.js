@@ -79,6 +79,8 @@ class ChartReactions extends Component {
       }`
     };
 
+    const xLength = Math.max(...datasets.map((d, i) => d.data.length));
+
     chart.data.datasets = this.state.cumulative
       ? datasets.map((d, i) => {
           return {
@@ -113,7 +115,7 @@ class ChartReactions extends Component {
           return {
             label: d.label,
             data: d.data.map(d => ({ x: d.x, y: d.y })),
-            type: d.data.length > 1000 ? "line" : "bar",
+            type: xLength > 50 ? "line" : "bar",
             borderColor: Chart.helpers
               .color(
                 chartColors[
@@ -127,7 +129,7 @@ class ChartReactions extends Component {
                   Object.keys(chartColors)[i % Object.keys(chartColors).length]
                 ]
               )
-              .alpha(0.15)
+              .alpha(xLength > 50 ? 0.15 : 0.5)
               .rgbString(),
             lineTension: this.state.format === "hour" ? 0.25 : 0
           };

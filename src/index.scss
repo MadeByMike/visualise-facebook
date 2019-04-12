@@ -65,4 +65,6 @@ input.input-files {
   width: 225px;
   font-size: 1rem;
   margin-top: 1rem;
+  pointer-events: all;
+  z-index: 999;
 }
