@@ -12,7 +12,7 @@ import NoData from "./components/no-data";
 
 import Chart from "chart.js";
 Chart.defaults.global.defaultFontColor = "#AAA";
-// Chart.defaults.global.title = { display: true };  // Title kills everything :(
+Chart.defaults.global.title = { display: true, position: "top" }; // Title kills everything :(
 
 class App extends Component {
   render() {

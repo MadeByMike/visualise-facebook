@@ -16,6 +16,7 @@ const chart = new Chart(canvas, {
     datasets: []
   },
   options: {
+    responsive: true,
     scales: {
       yAxes: [
         {

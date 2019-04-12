@@ -16,6 +16,7 @@ const chart = new Chart(canvas, {
     datasets: []
   },
   options: {
+    responsive: true,
     scales: {
       yAxes: [
         {
@@ -67,9 +68,9 @@ class ChartMessages extends Component {
 
     chart.options.title = {
       display: true,
-      fontSize: 32,
+      fontSize: 12,
       fontColor: "white",
-      padding: 20,
+      padding: 2,
       text: `Messages by ${this.state.format}${
         this.state.cumulative ? " (cumulative)" : ""
       }`

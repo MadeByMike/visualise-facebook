@@ -16,6 +16,7 @@ const chart = new Chart(canvas, {
     datasets: []
   },
   options: {
+    responsive: true,
     scales: {
       yAxes: [
         {
@@ -41,11 +42,11 @@ class ChartReactions extends Component {
     this.state = {
       cumulative: false,
       format: "day",
-      loading:true
+      loading: true
     };
     this.cumulativeRef = React.createRef();
   }
-  
+
   componentDidUpdate() {
     if (!this.props.reactions) {
       this.props.extractReactions();
@@ -70,67 +71,67 @@ class ChartReactions extends Component {
 
     chart.options.title = {
       display: true,
-      fontSize: 32,
+      fontSize: 12,
       fontColor: "white",
-      padding: 20,
+      padding: 2,
       text: `Reactions by ${this.state.format}${
         this.state.cumulative ? " (cumulative)" : ""
-        }`
+      }`
     };
 
     chart.data.datasets = this.state.cumulative
       ? datasets.map((d, i) => {
-        return {
-          label: d.label,
-          data: d.data
-            .map(d => ({ x: d.x, y: d.y }))
-            // Create cumulative sum
-            .reduce((a, b, i) => {
-              const c = a[i - 1] ? a[i - 1].y : 0;
-              return [...a, { y: b.y + c, x: b.x }];
-            }, []),
-          type: "line",
-          borderColor: Chart.helpers
-            .color(
-              chartColors[
-              Object.keys(chartColors)[i % Object.keys(chartColors).length]
-              ]
-            )
-            .rgbString(),
-          backgroundColor: Chart.helpers
-            .color(
-              chartColors[
-              Object.keys(chartColors)[i % Object.keys(chartColors).length]
-              ]
-            )
-            .alpha(0.15)
-            .rgbString(),
-          lineTension: 0
-        };
-      })
+          return {
+            label: d.label,
+            data: d.data
+              .map(d => ({ x: d.x, y: d.y }))
+              // Create cumulative sum
+              .reduce((a, b, i) => {
+                const c = a[i - 1] ? a[i - 1].y : 0;
+                return [...a, { y: b.y + c, x: b.x }];
+              }, []),
+            type: "line",
+            borderColor: Chart.helpers
+              .color(
+                chartColors[
+                  Object.keys(chartColors)[i % Object.keys(chartColors).length]
+                ]
+              )
+              .rgbString(),
+            backgroundColor: Chart.helpers
+              .color(
+                chartColors[
+                  Object.keys(chartColors)[i % Object.keys(chartColors).length]
+                ]
+              )
+              .alpha(0.15)
+              .rgbString(),
+            lineTension: 0
+          };
+        })
       : datasets.map((d, i) => {
-        return {
-          label: d.label,
-          data: d.data.map(d => ({ x: d.x, y: d.y })),
-          type: d.data.length > 1000 ? "line" : "bar",
-          borderColor: Chart.helpers
-            .color(
-              chartColors[
-              Object.keys(chartColors)[i % Object.keys(chartColors).length]
-              ]
-            )
-            .rgbString(),
-          backgroundColor: Chart.helpers
-            .color(
-              chartColors[
-              Object.keys(chartColors)[i % Object.keys(chartColors).length]
-              ]
-            )
-            .alpha(0.15)
-            .rgbString(),
-          lineTension: this.state.format === "hour" ? 0.25 : 0
-        };
-      });
+          return {
+            label: d.label,
+            data: d.data.map(d => ({ x: d.x, y: d.y })),
+            type: d.data.length > 1000 ? "line" : "bar",
+            borderColor: Chart.helpers
+              .color(
+                chartColors[
+                  Object.keys(chartColors)[i % Object.keys(chartColors).length]
+                ]
+              )
+              .rgbString(),
+            backgroundColor: Chart.helpers
+              .color(
+                chartColors[
+                  Object.keys(chartColors)[i % Object.keys(chartColors).length]
+                ]
+              )
+              .alpha(0.15)
+              .rgbString(),
+            lineTension: this.state.format === "hour" ? 0.25 : 0
+          };
+        });
 
     return (
       <div className="py-5">

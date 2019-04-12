@@ -4,24 +4,17 @@ import { actions } from "../functions/store";
 import { connect } from "unistore/react";
 import Loader from "./loader";
 
-
 class ChartWords extends Component {
-  constructor() {
-    super();
-  }
-
   render() {
     if (!this.props.zip) return null;
     if (!this.props.words) {
       this.props.extractWords();
       return <Loader />;
     }
-    console.log(processWordData(this.props.words))
+    console.log(processWordData(this.props.words));
     return (
       <div className="py-5">
-        <div>
-          {" "}
-        </div>
+        <div> </div>
       </div>
     );
   }
