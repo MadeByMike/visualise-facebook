@@ -9,14 +9,15 @@ class DropZone extends Component {
     super();
     this.state = { active: false };
     this.handleFiles = this.handleFiles.bind(this);
-    this.renderInput = this.renderInput.bind(this);
   }
 
   handleFiles(e) {
     e.preventDefault();
     const files = e.target.files ? e.target.files : e.dataTransfer.files;
 
-    this.setState({ active: false });
+    this.setState({
+      active: false
+    });
     if (files) {
       if (files.length > 1) {
         alert("Too many files");
@@ -54,25 +55,12 @@ class DropZone extends Component {
         }}
         onDrop={this.handleFiles}
       >
-        <div className="drop-message">
-          <DropMessage />
-          {this.renderInput()}
-        </div>
+        <DropMessage onFileInput={this.handleFiles} />
         {this.props.children}
+        {!this.props.zip && (
+          <span class="drop-message-disclaimer">(no data is uploaded)</span>
+        )}
       </div>
-    );
-  }
-
-  renderInput() {
-    if (this.props.zip) return null;
-    return (
-      <p>
-        <input
-          className="input-files"
-          type="file"
-          onChange={this.handleFiles}
-        />
-      </p>
     );
   }
 }

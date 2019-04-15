@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "unistore/react";
 
 const NoDataFound = props => {
-  if ((props.friends && props.messages && props.reactions) !== false) {
+  if ((props.friends || props.messages || props.reactions) !== false) {
     return null;
   }
 

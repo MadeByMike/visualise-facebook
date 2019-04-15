@@ -6,6 +6,8 @@ import { actions } from "../functions/store";
 import { connect } from "unistore/react";
 import Loader from "./loader";
 import { chartColors } from "../functions/colors";
+import { titleCase } from "../functions/title-case";
+import { fitLegend } from "../functions/plugin-legend";
 
 const canvas = document.createElement("canvas");
 canvas.classList.add("chart");
@@ -17,6 +19,7 @@ const chart = new Chart(canvas, {
   },
   options: {
     responsive: true,
+    aspectRatio: 1.3,
     scales: {
       yAxes: [
         {
@@ -32,7 +35,8 @@ const chart = new Chart(canvas, {
         }
       ]
     }
-  }
+  },
+  plugins: [fitLegend]
 });
 
 class ChartFriends extends Component {
@@ -45,7 +49,16 @@ class ChartFriends extends Component {
     };
   }
 
+  componentDidMount() {
+    if (this.props.zip) {
+      this.props.extractFriends();
+    }
+  }
+
   componentDidUpdate() {
+    if (!this.props.zip) {
+      this.setState({ loading: true });
+    }
     if (!this.props.friends) {
       this.props.extractFriends();
     }
@@ -58,7 +71,7 @@ class ChartFriends extends Component {
 
   render() {
     if (!this.props.zip || this.props.friends === false) return null;
-    if (this.state.loading) {
+    if (this.state.loading || !this.props.friends) {
       return <Loader />;
     }
 
@@ -67,13 +80,16 @@ class ChartFriends extends Component {
 
     chart.options.title = {
       display: true,
-      fontSize: 32,
-      fontColor: "white",
-      padding: 20,
-      text: `Friends by ${this.state.format}${
-        this.state.cumulative ? " (cumulative)" : ""
-      }`
+      fontSize: 22,
+      fontColor: "black",
+      padding: 12,
+      text: titleCase(
+        `Friends by ${this.state.format}${
+          this.state.cumulative ? " (cumulative)" : ""
+        }`
+      )
     };
+    chart.options.legend.labels = { boxWidth: 20 };
 
     const xLength = data.length;
 

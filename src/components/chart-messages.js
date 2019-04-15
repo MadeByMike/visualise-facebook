@@ -6,6 +6,8 @@ import { actions } from "../functions/store";
 import { connect } from "unistore/react";
 import Loader from "./loader";
 import { chartColors } from "../functions/colors";
+import { titleCase } from "../functions/title-case";
+import { fitLegend } from "../functions/plugin-legend";
 
 const canvas = document.createElement("canvas");
 canvas.classList.add("chart");
@@ -17,6 +19,7 @@ const chart = new Chart(canvas, {
   },
   options: {
     responsive: true,
+    aspectRatio: 1.3,
     scales: {
       yAxes: [
         {
@@ -32,7 +35,8 @@ const chart = new Chart(canvas, {
         }
       ]
     }
-  }
+  },
+  plugins: [fitLegend]
 });
 
 class ChartMessages extends Component {
@@ -44,6 +48,12 @@ class ChartMessages extends Component {
       loading: true
     };
     this.cumulativeRef = React.createRef();
+  }
+
+  componentDidMount() {
+    if (this.props.zip) {
+      this.props.extractMessages();
+    }
   }
 
   componentDidUpdate() {
@@ -59,7 +69,7 @@ class ChartMessages extends Component {
 
   render() {
     if (!this.props.zip || this.props.messages === false) return null;
-    if (this.props.loading) {
+    if (this.props.loading || !this.props.friends) {
       return <Loader />;
     }
 
@@ -68,13 +78,16 @@ class ChartMessages extends Component {
 
     chart.options.title = {
       display: true,
-      fontSize: 12,
-      fontColor: "white",
-      padding: 2,
-      text: `Messages by ${this.state.format}${
-        this.state.cumulative ? " (cumulative)" : ""
-      }`
+      fontSize: 22,
+      fontColor: "black",
+      padding: 12,
+      text: titleCase(
+        `Messages by ${this.state.format}${
+          this.state.cumulative ? " (cumulative)" : ""
+        }`
+      )
     };
+    chart.options.legend.labels = { boxWidth: 20 };
 
     chart.data.datasets = this.state.cumulative
       ? [

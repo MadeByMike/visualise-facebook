@@ -10,7 +10,12 @@ const isJSON = name =>
 
 const actions = store => ({
   dropData(state, zip) {
-    return { zip };
+    return {
+      zip,
+      reactions: undefined,
+      messages: undefined,
+      friends: undefined
+    };
   },
   extractFriends(state) {
     console.log("Processing Friends");

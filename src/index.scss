@@ -32,11 +32,15 @@ h1 {
   min-height: 300px;
   margin: 20px 0;
   transition: all 1s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .drop-zone.inactive {
   height: auto;
   border-color: transparent;
+  display: block;
 }
 
 .drop-zone.is-active {
@@ -47,24 +51,42 @@ h1 {
 .drop-message {
   text-align: center;
   color: #000;
-  position: absolute;
   pointer-events: none;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-weight: bold;
   text-transform: uppercase;
-  font-size: 150%;
+  font-size: 1.5rem;
   transition: all 1s ease;
 }
 
 .drop-zone.is-active .drop-message {
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: scale(1.2);
 }
-input.input-files {
+
+.input-files {
   width: 225px;
+  padding: 5px 0;
   font-size: 1rem;
   margin-top: 1rem;
   pointer-events: all;
   z-index: 999;
+}
+
+.drop-message-small {
+  font-size: 0.825rem;
+  font-weight: normal;
+}
+
+.drop-message-disclaimer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: normal;
+  transform: translate(-50%, -100%);
+}
+footer {
+  display: flex;
+  align-items: flex-end;
+  margin: 80px 0;
 }

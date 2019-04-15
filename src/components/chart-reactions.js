@@ -6,6 +6,8 @@ import { actions } from "../functions/store";
 import { connect } from "unistore/react";
 import Loader from "./loader";
 import { chartColors } from "../functions/colors";
+import { titleCase } from "../functions/title-case";
+import { fitLegend } from "../functions/plugin-legend";
 
 const canvas = document.createElement("canvas");
 canvas.classList.add("chart");
@@ -17,6 +19,7 @@ const chart = new Chart(canvas, {
   },
   options: {
     responsive: true,
+    aspectRatio: 1.3,
     scales: {
       yAxes: [
         {
@@ -33,7 +36,8 @@ const chart = new Chart(canvas, {
         }
       ]
     }
-  }
+  },
+  plugins: [fitLegend]
 });
 
 class ChartReactions extends Component {
@@ -45,6 +49,12 @@ class ChartReactions extends Component {
       loading: true
     };
     this.cumulativeRef = React.createRef();
+  }
+
+  componentDidMount() {
+    if (this.props.zip) {
+      this.props.extractReactions();
+    }
   }
 
   componentDidUpdate() {
@@ -60,7 +70,7 @@ class ChartReactions extends Component {
 
   render() {
     if (!this.props.zip || this.props.reactions === false) return null;
-    if (this.state.loading) {
+    if (this.state.loading || !this.props.reactions) {
       return <Loader />;
     }
 
@@ -71,13 +81,17 @@ class ChartReactions extends Component {
 
     chart.options.title = {
       display: true,
-      fontSize: 12,
-      fontColor: "white",
-      padding: 2,
-      text: `Reactions by ${this.state.format}${
-        this.state.cumulative ? " (cumulative)" : ""
-      }`
+      fontSize: 22,
+      fontColor: "black",
+      padding: 12,
+      text: titleCase(
+        `Reactions by ${this.state.format}${
+          this.state.cumulative ? " (cumulative)" : ""
+        }`
+      )
     };
+
+    chart.options.legend.labels = { boxWidth: 20 };
 
     const xLength = Math.max(...datasets.map((d, i) => d.data.length));
 
