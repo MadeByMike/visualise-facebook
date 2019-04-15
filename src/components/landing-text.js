@@ -19,7 +19,7 @@ const LandingText = props => {
         Facebook has an astonishing amount of information about you. While you
         can access and download some of your Facebook data, it can be hard to
         understand once you’ve downloaded it. This visualisation tries to solve
-        that problem, without requireing you to share your data with anyone.
+        that problem, without requiring you to share your data with anyone.
       </p>
       <p>
         To begin,{" "}
@@ -69,14 +69,14 @@ const LandingText = props => {
         organisations with more resources and access to your personal data are
         engaging in much more detailed forms of data analysis.
       </p>
-      <footer>
+      {/* <footer>
         <img
           src="/accan-logo.png"
           width="150"
           alt="ACCAN logo: Australian Communications Consumer Action Network"
         />
         <span> Thanks to ACCAN for supporting this project.</span>
-      </footer>
+      </footer> */}
     </Fragment>
   );
 };
