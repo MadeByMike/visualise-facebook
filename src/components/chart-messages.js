@@ -60,6 +60,7 @@ class ChartMessages extends Component {
     if (!this.props.messages) {
       this.props.extractMessages();
     }
+
     if (this.props.messages && this.state.loading) {
       this.setState({
         loading: false
@@ -69,7 +70,7 @@ class ChartMessages extends Component {
 
   render() {
     if (!this.props.zip || this.props.messages === false) return null;
-    if (this.props.loading || !this.props.friends) {
+    if (this.props.loading || !this.props.messages) {
       return <Loader />;
     }
 

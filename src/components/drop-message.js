@@ -6,7 +6,7 @@ const DropMessage = props => {
   return (
     <div className="drop-message">
       <p>DROP FACEBOOK ZIP FILE HERE</p>
-      <span class="drop-message-small">OR</span>
+      <span className="drop-message-small">OR</span>
       <p>
         <input
           className="input-files"

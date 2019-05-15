@@ -38,7 +38,9 @@ const actions = store => ({
       state.zip.folder("messages/inbox").forEach((relativePath, file) => {
         if (!file.dir && isJSON(file.name)) {
           messages.push(
-            file.async("text").then(result => JSON.parse(result).messages)
+            file.async("text").then(result => {
+              return JSON.parse(result).messages;
+            })
           );
         }
       });

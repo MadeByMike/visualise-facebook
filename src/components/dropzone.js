@@ -58,7 +58,7 @@ class DropZone extends Component {
         <DropMessage onFileInput={this.handleFiles} />
         {this.props.children}
         {!this.props.zip && (
-          <span class="drop-message-disclaimer">(no data is uploaded)</span>
+          <span className="drop-message-disclaimer">(no data is uploaded)</span>
         )}
       </div>
     );
