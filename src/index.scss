@@ -87,6 +87,13 @@ h1 {
 }
 footer {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin: 80px 0;
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+.accan {
+  flex-basis: 230px;
+  flex-shrink: 0;
 }

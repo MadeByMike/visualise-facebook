@@ -48,16 +48,15 @@ const LandingText = props => {
 
       <p>
         Your Facebook data will be downloaded as a zip file. Once downloaded,
-        drag and drop it below to begin. There's no need to unzip the file
+        drag and drop it below to begin. There's no need to unzip the file.
       </p>
 
       {props.children}
       <br />
       <p>
         <strong>No data is uploaded when using this service</strong>. All data
-        processing is done in the browser. However, this means that if you have
-        a lot of data or your computer is old, the data visualisation may take
-        some time to appear.
+        processing is done in the browser. But if you have a lot of data or your
+        computer is old, the visualisation may take some time to appear.
       </p>
       <p>
         We hope that this visualisation does a few things. At a practical level,
@@ -69,14 +68,26 @@ const LandingText = props => {
         organisations with more resources and access to your personal data are
         engaging in much more detailed forms of data analysis.
       </p>
-      {/* <footer>
+      <footer>
         <img
+          class="accan"
           src="/accan-logo.png"
           width="150"
           alt="ACCAN logo: Australian Communications Consumer Action Network"
         />
-        <span> Thanks to ACCAN for supporting this project.</span>
-      </footer> */}
+        <div>
+          <p>Thanks to ACCAN for supporting this project.</p>
+          <p>
+            <em>
+              The operation of the Australian Communications Consumer Action
+              Network is made possible by funding provided by the Commonwealth
+              of Australia under section 593 of the Telecommunications Act 1997.
+              This funding is recovered from charges on telecommunications
+              carriers.
+            </em>
+          </p>
+        </div>
+      </footer>
     </Fragment>
   );
 };
