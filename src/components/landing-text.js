@@ -22,6 +22,21 @@ const LandingText = props => {
         that problem, without requiring you to share your data with anyone.
       </p>
       <p>
+        We developed this visualiser as part of the "Consumer rights to personal
+        data" project, which was funded by the Australian Communications
+        Consumer Action Network.{" "}
+      </p>
+      <p>
+        At a practical level, we hope the tool gives you some insight into your
+        Facebook data and makes the data you have downloaded slightly more
+        meaningful. More generally, we hope the visualiser contributes to the
+        broader project of improving data literacy.
+      </p>
+      <p>
+        James Meese, Punit Jagasia and James Arvanitakis. Created by Mike
+        Riethmuller.
+      </p>
+      <p>
         To begin,{" "}
         <a href="https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav">
           download your data from Facebook
@@ -57,16 +72,6 @@ const LandingText = props => {
         <strong>No data is uploaded when using this service</strong>. All data
         processing is done in the browser. But if you have a lot of data or your
         computer is old, the visualisation may take some time to appear.
-      </p>
-      <p>
-        We hope that this visualisation does a few things. At a practical level,
-        we hope it provides some more insight into your Facebook data and
-        assists the broader goal of improving data literacy. We also hope it
-        gives you a sense of how much meaning can be made from this personal
-        data. It can be relatively easy to identify trends and patterns. It
-        didn’t take us long to develop these basic visualisation. It is likely
-        organisations with more resources and access to your personal data are
-        engaging in much more detailed forms of data analysis.
       </p>
       <footer>
         <img
