@@ -24,7 +24,7 @@ const LandingText = props => {
       <h2>About Us</h2>
       <p>
         We are a group of researchers at the University of Technology Sydney and
-        Western Sydney University. We developed this visualiser as part of the
+        Western Sydney University. We developed this visualiser as part of the{" "}
         <a href="https://accan.org.au/grants/current-grants/1433-consumer-rights-to-personal-data">
           Consumer rights to personal data
         </a>{" "}
@@ -39,8 +39,9 @@ const LandingText = props => {
       </p>
       <p>
         <a href="https://www.uts.edu.au/staff/james.meese">James Meese</a>,{" "}
+        Punit Jagasia and{" "}
         <a href="https://www.westernsydney.edu.au/ics/people/researchers/james_arvanitakis">
-          Punit Jagasia and James Arvanitakis
+          James Arvanitakis
         </a>
         . Created by <a href="https://madebymike.com.au">Mike Riethmuller</a>.
       </p>
