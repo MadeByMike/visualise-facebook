@@ -93,7 +93,18 @@ footer {
     margin-bottom: 0;
   }
 }
-.accan {
-  flex-basis: 230px;
+.logos {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 175px;
   flex-shrink: 0;
+}
+
+.uts-logo {
+  padding: 30px 10px;
+}
+
+hr {
+  border-bottom: solid 1px;
+  margin: 2em 0 4em 0;
 }

@@ -21,10 +21,15 @@ const LandingText = props => {
         understand once you’ve downloaded it. This visualisation tries to solve
         that problem, without requiring you to share your data with anyone.
       </p>
+      <h2>About Us</h2>
       <p>
-        We developed this visualiser as part of the "Consumer rights to personal
-        data" project, which was funded by the Australian Communications
-        Consumer Action Network.{" "}
+        We are a group of researchers at the University of Technology Sydney and
+        Western Sydney University. We developed this visualiser as part of the
+        <a href="https://accan.org.au/grants/current-grants/1433-consumer-rights-to-personal-data">
+          Consumer rights to personal data
+        </a>{" "}
+        project, which was funded by the Australian Communications Consumer
+        Action Network.
       </p>
       <p>
         At a practical level, we hope the tool gives you some insight into your
@@ -33,9 +38,13 @@ const LandingText = props => {
         broader project of improving data literacy.
       </p>
       <p>
-        James Meese, Punit Jagasia and James Arvanitakis. Created by Mike
-        Riethmuller.
+        <a href="https://www.uts.edu.au/staff/james.meese">James Meese</a>,{" "}
+        <a href="https://www.westernsydney.edu.au/ics/people/researchers/james_arvanitakis">
+          Punit Jagasia and James Arvanitakis
+        </a>
+        . Created by <a href="https://madebymike.com.au">Mike Riethmuller</a>.
       </p>
+      <hr />
       <p>
         To begin,{" "}
         <a href="https://www.facebook.com/help/1701730696756992?helpref=hc_global_nav">
@@ -74,12 +83,20 @@ const LandingText = props => {
         computer is old, the visualisation may take some time to appear.
       </p>
       <footer>
-        <img
-          class="accan"
-          src="/accan-logo.png"
-          width="150"
-          alt="ACCAN logo: Australian Communications Consumer Action Network"
-        />
+        <div class="logos">
+          <img
+            class="accan-logo"
+            src="/accan-logo.png"
+            width="150"
+            alt="ACCAN logo: Australian Communications Consumer Action Network"
+          />
+          <img
+            class="uts-logo"
+            src="/uts-logo.png"
+            width="150"
+            alt="UTS logo: University of Technology Sydney"
+          />
+        </div>
         <div>
           <p>Thanks to ACCAN for supporting this project.</p>
           <p>
