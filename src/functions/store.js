@@ -21,14 +21,28 @@ const actions = store => ({
     console.log("Processing Friends");
     try {
       state.zip
+        .file("friends_and_followers/friends.json")
+        .async("text")
+        .then(json => {
+          store.setState({ friends: JSON.parse(json).friends_v2 });
+        });
+    } catch (e) {
+
+      // Try the old folder API
+      try {
+
+        state.zip
         .file("friends/friends.json")
         .async("text")
         .then(json => {
           store.setState({ friends: JSON.parse(json).friends });
         });
-    } catch (e) {
-      store.setState({ friends: false });
-      console.log(e);
+
+      } catch (e) {
+        store.setState({ friends: false });
+        console.log(e);
+      }
+
     }
   },
   extractMessages(state) {
@@ -78,14 +92,24 @@ const actions = store => ({
     console.log("Processing Reactions");
     try {
       state.zip
-        .file("likes_and_reactions/posts_and_comments.json")
+        .file("comments_and_reactions/posts_and_comments.json")
         .async("text")
         .then(json => {
-          store.setState({ reactions: JSON.parse(json).reactions });
+          store.setState({ reactions: JSON.parse(json).reactions_v2 });
         });
     } catch (e) {
-      store.setState({ reactions: false });
-      console.log(e);
+      // Try old folder API
+      try {
+        state.zip
+          .file("likes_and_reactions/posts_and_comments.json")
+          .async("text")
+          .then(json => {
+            store.setState({ reactions: JSON.parse(json).reactions });
+          });
+      } catch (e) {
+        store.setState({ reactions: false });
+        console.log(e);
+      }
     }
   }
 });

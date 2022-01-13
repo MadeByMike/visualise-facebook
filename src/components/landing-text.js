@@ -38,7 +38,7 @@ const LandingText = props => {
         broader project of improving data literacy.
       </p>
       <p>
-        <a href="https://www.uts.edu.au/staff/james.meese">James Meese</a>,{" "}
+        <a href="https://www.rmit.edu.au/contact/staff-contacts/academic-staff/m/meese-dr-james">James Meese</a>,{" "}
         Punit Jagasia and{" "}
         <a href="https://www.westernsydney.edu.au/ics/people/researchers/james_arvanitakis">
           James Arvanitakis
@@ -84,15 +84,15 @@ const LandingText = props => {
         computer is old, the visualisation may take some time to appear.
       </p>
       <footer>
-        <div class="logos">
+        <div className="logos">
           <img
-            class="accan-logo"
+            className="accan-logo"
             src="/accan-logo.png"
             width="150"
             alt="ACCAN logo: Australian Communications Consumer Action Network"
           />
           <img
-            class="uts-logo"
+            className="uts-logo"
             src="/uts-logo.png"
             width="150"
             alt="UTS logo: University of Technology Sydney"
