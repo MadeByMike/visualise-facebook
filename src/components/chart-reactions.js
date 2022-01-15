@@ -11,6 +11,7 @@ import { fitLegend } from "../functions/plugin-legend";
 
 const canvas = document.createElement("canvas");
 canvas.classList.add("chart");
+const isMobile = window.matchMedia("(max-width: 767px)").matches;
 const chart = new Chart(canvas, {
   type: "bar",
   data: {
@@ -19,11 +20,11 @@ const chart = new Chart(canvas, {
   },
   options: {
     responsive: true,
-    aspectRatio: 1.3,
+    aspectRatio: isMobile ? 9/16 : 4/3,
     scales: {
       yAxes: [
         {
-          gridLines: { color: "#444" },
+          gridLines: { color: "#ccc" },
           ticks: {
             beginAtZero: true
           }
@@ -31,7 +32,7 @@ const chart = new Chart(canvas, {
       ],
       xAxes: [
         {
-          gridLines: { color: "#444" },
+          gridLines: { color: "#ccc" },
           type: "time"
         }
       ]
@@ -90,8 +91,6 @@ class ChartReactions extends Component {
         }`
       )
     };
-
-    chart.options.legend.labels = { boxWidth: 20 };
 
     const xLength = Math.max(...datasets.map((d, i) => d.data.length));
 

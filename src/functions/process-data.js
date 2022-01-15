@@ -32,7 +32,7 @@ export const processMessagesData = (data, f) => {
   const formatOptions = {
     day: "dd/MM/yyyy",
     month: "MM/yyyy",
-    hour: "h aaaa"
+    "hour of day": "h aaaa"
   };
 
   const labelFormat = formatOptions[f];

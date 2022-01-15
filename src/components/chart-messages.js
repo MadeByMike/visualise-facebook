@@ -11,6 +11,7 @@ import { fitLegend } from "../functions/plugin-legend";
 
 const canvas = document.createElement("canvas");
 canvas.classList.add("chart");
+const isMobile = window.matchMedia("(max-width: 767px)").matches;
 const chart = new Chart(canvas, {
   type: "bar",
   data: {
@@ -19,11 +20,14 @@ const chart = new Chart(canvas, {
   },
   options: {
     responsive: true,
-    aspectRatio: 1.3,
+    aspectRatio: isMobile ? 9/16 : 4/3,
+    legend: {
+      display: false
+    },
     scales: {
       yAxes: [
         {
-          gridLines: { color: "#444" },
+          gridLines: { color: "#ccc" },
           ticks: {
             beginAtZero: true
           }
@@ -31,7 +35,7 @@ const chart = new Chart(canvas, {
       ],
       xAxes: [
         {
-          gridLines: { color: "#444" }
+          gridLines: { color: "#ccc" },
         }
       ]
     }
@@ -88,8 +92,7 @@ class ChartMessages extends Component {
         }`
       )
     };
-    chart.options.legend.labels = { boxWidth: 20 };
-
+    
     chart.data.datasets = this.state.cumulative
       ? [
           {
@@ -161,7 +164,7 @@ class ChartMessages extends Component {
               className="custom-control-input"
               onClick={e => {
                 this.cumulativeRef.current.checked = false;
-                this.setState({ format: "hour", cumulative: false });
+                this.setState({ format: "hour of day", cumulative: false });
               }}
               type="radio"
               id="MessagesByHour"
@@ -176,7 +179,7 @@ class ChartMessages extends Component {
             <input
               className="custom-control-input"
               ref={this.cumulativeRef}
-              disabled={this.state.format === "hour"}
+              disabled={this.state.format === "hour of day"}
               onChange={e => {
                 this.setState({ cumulative: e.target.checked });
               }}
